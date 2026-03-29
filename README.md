@@ -138,13 +138,16 @@ bun src/cli.ts rvbp "make my document search 10x faster"
 
 ### Method 3: Deep Analysis (Swarm)
 
-For complex problems that need thorough research, ask Claude to run a multi-agent analysis. This automatically produces a detailed RVBP (implementation proposal) — you do not need to ask for one separately.
+For complex problems that need thorough research, ask Claude to run a multi-agent analysis. If you want a written proposal, ask for it explicitly and specify where to save it:
 
-> use @ruvector-catalog to deeply analyze how to build a real-time patient monitoring system
+> use @ruvector-catalog to deeply analyze how to build a real-time patient monitoring system and create an RVBP in docs/research/
+
+> use @ruvector-catalog to deeply analyze genomics integration and save the RVBP to docs/research/
+
+The deep analysis itself produces a rich verbal response. Adding "create an RVBP" tells Claude to also write it to a file you can share.
 
 **What is different about this method?**
 
-- Automatically generates a detailed RVBP with architecture, integration steps, and code examples
 - Takes 30-60 seconds instead of a few seconds
 - Multiple AI agents work in parallel, each with different expertise
 - Produces richer results: not just "which technologies" but "how to architect the full solution"
