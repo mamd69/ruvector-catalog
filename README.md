@@ -263,3 +263,13 @@ File an issue at [github.com/mamd69/ruvector-catalog/issues](https://github.com/
 
 **Want a new industry vertical:**
 Open a feature request issue with the title "Industry Vertical: [Your Industry]" and describe 3-5 use cases you would like mapped.
+
+---
+
+## Contributors
+
+| | Role |
+|---|---|
+| [@mamd69](https://github.com/mamd69) | RuVector Catalog — architecture, V3 implementation, benchmarking, documentation |
+| [@stuinfla](https://github.com/stuinfla) | V1 catalog — the original hand-curated SKILL.md and technology inventory that V3 builds upon |
+| [@ruvnet](https://github.com/ruvnet) | [RuVector](https://github.com/ruvnet/ruvector) — the 1.58M-line monorepo of 200+ technologies that the catalog indexes |
