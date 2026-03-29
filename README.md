@@ -38,6 +38,8 @@ curl -fsSL https://bun.sh/install | bash
 
 ### 2. Clone the catalog and install dependencies
 
+Copy and paste this entire block into your terminal — it runs all three commands in sequence:
+
 ```bash
 git clone https://github.com/mamd69/ruvector-catalog.git
 cd ruvector-catalog
@@ -50,7 +52,7 @@ The catalog needs the RuVector monorepo as a submodule to scan its source code. 
 
 > create an upstream submodule of ruvnet/ruvector
 
-Or run manually:
+Or copy and paste these two commands into your terminal:
 
 ```bash
 git submodule add https://github.com/ruvnet/ruvector.git ruvector
@@ -240,17 +242,12 @@ In Claude Code:
 
 > update the ruvector submodule and rebuild the catalog
 
-Or manually:
+Or copy and paste this block into your terminal (each line runs one step):
 
 ```bash
-# Pull the latest RuVector source
-git submodule update --remote ruvector
-
-# Rebuild the catalog index
-bun scripts/build-catalog.ts
-
-# Check for staleness
-bun src/cli.ts verify
+git submodule update --remote ruvector    # Pull latest RuVector source
+bun scripts/build-catalog.ts              # Rebuild the catalog index
+bun src/cli.ts verify                     # Check for staleness
 ```
 
 ---
