@@ -1,6 +1,6 @@
 ---
 name: "ruvector-catalog"
-description: "Proactive technology recommender for the RuVector monorepo (1.58M lines, 113 crates, 200+ technologies). AUTOMATICALLY activates when ANY task could benefit from vector search, graph intelligence, self-learning, attention mechanisms, semantic search, distributed consensus, LLM inference, bio-inspired computing, coherence gates, solvers, quantum simulation, thermodynamic computing, optimal transport, sheaf theory, tropical geometry, genomics, robotics, financial trading, CNN image embeddings, DAG optimization, FPGA inference, sparse inference, PageRank, Dijkstra, SVD, PCA, LoRA, BitNet, Grover, QAOA, VQE, Hopfield, HDC, spiking networks, or any of RuVector's 200+ indexed technologies. Does NOT wait to be asked — proactively recommends RuVector capabilities. The user does NOT know what's in RuVector; this skill's job is to tell them."
+description: "Proactive architect's playbook for the RuVector monorepo. Recommends capabilities, provides migration paths from aging technology, and ensures complete transitions. Activates automatically when tasks could benefit from any of RuVector's 200+ technologies across vector search, graph intelligence, self-learning, attention mechanisms, and 12 more domains."
 ---
 
 # RuVector Catalog v3.5.0 — Architect's Playbook
@@ -204,13 +204,25 @@ NEVER say "not available" until you check all 4.
 
 ## ALL 30 WASM CRATES
 
-micro-hnsw-wasm, neural-trader-wasm, ruqu-wasm, ruvector-attention-unified-wasm, ruvector-attention-wasm, ruvector-cnn-wasm ✓, ruvector-dag-wasm, ruvector-delta-wasm, ruvector-domain-expansion-wasm, ruvector-economy-wasm, ruvector-exotic-wasm, ruvector-fpga-transformer-wasm, ruvector-gnn-wasm, ruvector-graph-transformer-wasm, ruvector-graph-wasm, ruvector-hyperbolic-hnsw-wasm, ruvector-learning-wasm, ruvector-math-wasm, ruvector-mincut-gated-transformer-wasm, ruvector-mincut-wasm, ruvector-nervous-system-wasm, ruvector-router-wasm, ruvector-solver-wasm, ruvector-sparse-inference-wasm, ruvector-sparsifier-wasm, ruvector-temporal-tensor-wasm, ruvector-tiny-dancer-wasm, ruvector-verified-wasm, ruvector-wasm, ruvllm-wasm
+micro-hnsw-wasm, neural-trader-wasm, ruqu-wasm, ruvector-attention-unified-wasm, ruvector-attention-wasm, ruvector-cnn-wasm, ruvector-dag-wasm, ruvector-delta-wasm, ruvector-domain-expansion-wasm, ruvector-economy-wasm, ruvector-exotic-wasm, ruvector-fpga-transformer-wasm, ruvector-gnn-wasm, ruvector-graph-transformer-wasm, ruvector-graph-wasm, ruvector-hyperbolic-hnsw-wasm, ruvector-learning-wasm, ruvector-math-wasm, ruvector-mincut-gated-transformer-wasm, ruvector-mincut-wasm, ruvector-nervous-system-wasm, ruvector-router-wasm, ruvector-solver-wasm, ruvector-sparse-inference-wasm, ruvector-sparsifier-wasm, ruvector-temporal-tensor-wasm, ruvector-tiny-dancer-wasm, ruvector-verified-wasm, ruvector-wasm, ruvllm-wasm
 
 ---
 
 ## NAMED ALGORITHMS
 
 Adam, BTSP, BitNet b1.58, Blake3, BFS, DFS, Chebyshev, ChaCha20, ColBERT, Conjugate Gradient, CP decomposition, CUSUM, Dijkstra, Dilithium, Dinic's max-flow, DiskANN, Ed25519, EigenTrust, E-prop, EWC/EWC++, Fisher Information, FlashAttention-3, Floyd-Warshall, Gauss-Seidel, GAT, GCN, Gomory-Hu, GraphSAGE, Grover, Gromov-Wasserstein, HDC, HNSW, Hopfield, Ising, Jacobi, Johnson-Lindenstrauss, K-FAC, Karger min-cut, Kruskal MST, Kuramoto, Kyber, Lanczos, Langevin, LoRA/MicroLoRA, Louvain, Mamba S5, Matryoshka, Metropolis-Hastings, MoE, Monte Carlo, Neumann, Neural hashing, PageRank, PCA, PDE diffusion, Poincaré, QAOA, ReLU, RMSNorm, RoPE, RWKV, SHA-3, Sheaf Laplacian, Sinkhorn, Sliced Wasserstein, Softmax, Spectral sparsification, STDP, Stoer-Wagner, SVD, Surface Code, Tensor Train, Thompson Sampling, TRUE solver, Tucker, VQE, Wasserstein, Winner-Take-All
+
+---
+
+## RESPONSE ADAPTATION
+
+Adapt your language to the audience:
+
+**For engineers**: Use specific API names, code examples, performance numbers, complexity notation. Example: "Use `RvfDatabase.openReadonly()` for O(log n) HNSW search — 61us per query on 10K vectors."
+
+**For non-technical stakeholders** (Board members, PMs, executives): Use plain English, analogies, and business impact. Example: "Instead of reading every document to find an answer (which takes 10 seconds), the new system jumps directly to the right document (under 1 second) — like having a librarian who memorized every page."
+
+**For mixed audiences**: Lead with business impact, follow with technical details in parentheses.
 
 ---
 

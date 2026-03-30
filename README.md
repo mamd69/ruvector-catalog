@@ -218,6 +218,17 @@ const embedding = embedder.extract(rgbPixels, 224, 224); // 512D
 
 ---
 
+## What RuVector Catalog Does NOT Do
+
+- **Not a content generator.** It will not write blog posts, emails, or marketing copy. It recommends *infrastructure* technologies.
+- **Not an app builder.** It will not create your website or mobile app. It recommends the AI/ML components that would power those apps.
+- **Not a chatbot.** It does not hold general conversations. It answers one specific question: "What technologies should I use for this problem?"
+- **Not a deployment tool.** It tells you what to build and what to migrate from — but it does not deploy, configure, or monitor your infrastructure.
+
+**What it IS:** The expert architect that sits between your problem and the 200+ technologies that could solve it, including how to migrate away from what you have now.
+
+---
+
 ## Industry Solutions
 
 ### Healthcare
