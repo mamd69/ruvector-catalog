@@ -298,10 +298,18 @@ const results = await db.query(queryVector, 10);
 
 ## Keeping It Updated
 
+### Update the catalog (do this before each use — takes 3 seconds)
+
 ```bash
-git submodule update --remote ruvector
-bun scripts/build-catalog.ts
-bun src/cli.ts verify
+git pull origin main
+```
+
+### Update the RuVector source (when rebuilding the index)
+
+```bash
+git submodule update --remote ruvector    # Pull latest RuVector source
+bun scripts/build-catalog.ts              # Rebuild the catalog index
+bun src/cli.ts verify                     # Check for staleness
 ```
 
 ---
