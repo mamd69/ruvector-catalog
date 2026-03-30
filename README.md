@@ -1,28 +1,85 @@
-# RuVector Catalog
+# RuVector Catalog v3.5.0
 
-**A technology recommender that matches your problems to 200+ AI/ML capabilities.**
+**An architect's playbook that matches your problems to 200+ AI/ML capabilities, provides complete migration paths from aging technology, and ensures nothing gets left behind.**
 
 | | |
 |---|---|
 | Technologies | 200+ searchable AI/ML building blocks |
-| Capability Domains | 16 (vector search, graph intelligence, self-learning, robotics, and more) |
+| Rust Crates | 113 (verified against source) |
+| npm Packages | 56 (12 scoped @ruvector/* packages) |
+| WASM Builds | 30 (buildable from submodule with wasm-pack) |
+| npm Exports | 170 (44 classes, 126 functions) |
+| Capability Domains | 16 (vector search, graph, self-learning, attention, bio-inspired, and more) |
+| Migration Patterns | 10 aging-technology replacement guides with sunset checklists |
 | Industry Verticals | 5 (healthcare, finance, robotics, edge/IoT, genomics) |
 
 ---
 
 ## What Is This?
 
-Imagine you are building something -- a clinical decision support tool, a fraud detection system, a search engine that understands meaning, not just keywords. You know *what* you want to accomplish, but you are not sure *which* technologies to use.
+RuVector Catalog does three things:
 
-RuVector Catalog is your guide.
+### 1. Recommends the Right Technology
 
-It works like asking a master librarian who has memorized every book in a vast technical library. You describe your problem in plain English. The catalog searches through 200+ AI and machine learning building blocks and recommends the ones that fit your needs -- with explanations of why each one matters and how they work together.
+You describe your problem in plain English. The catalog searches 200+ AI/ML building blocks and recommends the ones that fit, with explanations of why and how they connect.
 
-Think of it this way:
+### 2. Migrates You From Aging Technology
 
-- **RuVector** is a large collection of AI/ML building blocks (like a parts catalog for an engineer).
-- **RuVector Catalog** is the guide that helps you find the right parts for your project.
-- You do not need to know the names of anything. Just describe what you need.
+The catalog detects 10 common aging patterns in codebases (OpenAI embeddings, JSON flat-file indexes, pgvector, static search, etc.) and provides complete replacement guides: what to install, what code to write, and critically, **what to delete** -- old code, old data, old scripts, old environment variables, old documentation.
+
+### 3. Shows You How to Access Everything
+
+Every RuVector capability has three possible access paths:
+- **npm package** -- `require('ruvector')` gives you 170 exports instantly
+- **Submodule WASM build** -- `wasm-pack build` compiles any of 30 Rust crates to Node.js in ~90 seconds
+- **NAPI native bindings** -- Pre-built platform-specific binaries for maximum performance
+
+The catalog maps every component to its access path so you never hear "not available" when a feature exists.
+
+---
+
+## What's New in v3.5.0
+
+### Migration Intelligence (NEW)
+
+Ten aging-technology patterns with detect/replace/delete instructions:
+
+| # | Aging Pattern | RuVector Replacement |
+|---|---------------|---------------------|
+| 1 | External embedding APIs (OpenAI, Cohere) | AdaptiveEmbedder (local ONNX, $0/query, self-learning) |
+| 2 | JSON flat-file vector indexes | RVF binary HNSW (O(log n), witness chains) |
+| 3 | pgvector / Pinecone / Qdrant / Weaviate | VectorDb + RvfDatabase (zero server, zero cost) |
+| 4 | Static embeddings (never improve) | AdaptiveEmbedder + SonaEngine (3-loop learning) |
+| 5 | No image understanding | ruvector-cnn-wasm (MobileNet-V3, 512D CNN) |
+| 6 | Hand-rolled hybrid search | differentiableSearch (learned ranking) |
+| 7 | No document relationships | buildGraph + louvainCommunities + minCut |
+| 8 | No anomaly detection | CoherenceMonitor + delta-core (CUSUM) |
+| 9 | Simple softmax attention | FlashAttention-3 / MoEAttention (50+ variants) |
+| 10 | No formal verification | ruvector-verified-wasm (SAT/SMT, K-induction) |
+
+Each pattern includes:
+- **Detect**: Code patterns and imports that reveal the aging technology
+- **Replace**: Exact `require()` path or `wasm-pack build` command
+- **Delete**: What to remove -- old files, old dependencies, old env vars, old docs
+
+### Complete Sunset Checklist (NEW)
+
+15-step checklist ensuring nothing gets left behind during migrations. Steps 5-11 are explicitly called out as the deletion steps where incomplete migrations live.
+
+### Operational Bridge (NEW)
+
+Three access paths mapped for every major component. Decision tree: never say a feature is unavailable until all four paths are checked (npm export, scoped package, submodule WASM, submodule Rust crate).
+
+### Verified Inventory (UPDATED)
+
+All counts verified against the actual filesystem on 2026-03-30:
+- 113 Rust crates (counted via `ls -d ruvector/crates/*/`)
+- 56 npm packages (counted via `ls -d ruvector/npm/packages/*/`)
+- 30 WASM crates (counted via `ls -d ruvector/crates/*-wasm/`)
+- 170 npm exports (verified via `Object.keys(require('ruvector'))`)
+- 131 ADRs (counted via `ls ruvector/docs/adr/ADR-*.md`)
+- 42 example projects (counted via `ls -d ruvector/examples/*/`)
+- CNN WASM build tested end-to-end (produces 512D MobileNet-V3 embeddings)
 
 ---
 
@@ -30,15 +87,11 @@ Think of it this way:
 
 ### 1. Install the Bun runtime
 
-Bun is a fast JavaScript runtime. Install it with one command:
-
 ```bash
 curl -fsSL https://bun.sh/install | bash
 ```
 
 ### 2. Clone the catalog and install dependencies
-
-Copy and paste this entire block into your terminal — it runs all three commands in sequence:
 
 ```bash
 git clone https://github.com/mamd69/ruvector-catalog.git
@@ -48,18 +101,10 @@ bun install
 
 ### 3. Add the RuVector source code (required for rebuilding the catalog)
 
-The catalog needs the RuVector monorepo as a submodule to scan its source code. In Claude Code, say:
-
-> create an upstream submodule of ruvnet/ruvector
-
-Or copy and paste these two commands into your terminal:
-
 ```bash
 git submodule add https://github.com/ruvnet/ruvector.git ruvector
 git submodule update --init --recursive
 ```
-
-This pulls the full RuVector codebase (~1.58M lines of Rust). The catalog reads it to build its technology index.
 
 ### 4. Ask your first question
 
@@ -77,151 +122,118 @@ bun src/cli.ts search "I need to search documents by meaning, not just keywords"
 
 ## How to Use
 
-There are three ways to use RuVector Catalog, from simplest to most thorough.
+### Method 1: Ask Claude (Recommended)
 
-### Method 1: Ask Claude (Recommended for Most Users)
-
-If you are working inside Claude Code, just ask directly. Claude reads the catalog's SKILL.md and finds the right technologies for you.
-
-**Quick search** — get a ranked list of matching technologies:
+**Quick search** -- get a ranked list of matching technologies:
 
 > use @ruvector-catalog to find technologies for detecting errors in AI output
 
 > use @ruvector-catalog to recommend technologies for building a clinical healthcare solution
 
-> use @ruvector-catalog to find the best approach for searching millions of documents by meaning
+**Migration analysis** -- detect aging technology and get replacement plan:
 
-> use @ruvector-catalog to help me build an AI agent that learns from experience
+> use @ruvector-catalog to analyze my codebase for aging patterns and recommend RuVector replacements
 
-**Get a full implementation proposal** (RVBP) — only generated when you ask for one:
+> use @ruvector-catalog to help me migrate from OpenAI embeddings to local RuVector embeddings
+
+> use @ruvector-catalog to create a complete migration plan from pgvector to RVF format
+
+**Full implementation proposal** (RVBP):
 
 > use @ruvector-catalog to create an RVBP for building real-time patient monitoring
 
-> use @ruvector-catalog to create a proposal for making my search 10x faster
-
-A search returns a quick ranked list. An RVBP returns a detailed plan with architecture, integration steps, dependencies, code examples, and trade-offs.
-
-**What to expect:** Claude returns a structured response with the top matching technologies, what each one does, why it fits your problem, and how they connect to each other.
-
----
-
 ### Method 2: Command Line
-
-For direct searches when you are not using Claude Code.
-
-**Search for technologies:**
 
 ```bash
 bun src/cli.ts search "prevent AI model from giving wrong answers over time"
-```
-
-**Generate an implementation proposal (RVBP):**
-
-```bash
 bun src/cli.ts rvbp "make my document search 10x faster"
+bun src/cli.ts list
+bun src/cli.ts stats
 ```
-
-**Other commands:**
-
-| Command | What it does | Claude Code equivalent |
-|---|---|---|
-| `bun src/cli.ts search "query"` | Search for matching technologies | *use @ruvector-catalog to find...* |
-| `bun src/cli.ts rvbp "problem"` | Generate implementation proposal | *use @ruvector-catalog to create an RVBP for...* |
-| `bun src/cli.ts list` | Show all 200+ technologies | *use @ruvector-catalog to list all technologies* |
-| `bun src/cli.ts list --status production` | Show production-ready only | *use @ruvector-catalog to list production-ready technologies* |
-| `bun src/cli.ts scope "query"` | Check if a query is in scope | *use @ruvector-catalog to check if [topic] is something RuVector covers* |
-| `bun src/cli.ts stats` | Show catalog statistics | *use @ruvector-catalog to show catalog stats* |
-| `bun src/cli.ts verify` | Check if catalog is up to date | *use @ruvector-catalog to check if the catalog is current* |
-| `bun src/cli.ts help` | Show all commands | *how do I use @ruvector-catalog?* |
-
----
 
 ### Method 3: Deep Analysis (Swarm)
 
-For complex problems that need thorough research, ask Claude to run a multi-agent analysis. If you want a written proposal, ask for it explicitly and specify where to save it:
+For complex problems that need multi-agent research:
 
 > use @ruvector-catalog to deeply analyze how to build a real-time patient monitoring system and create an RVBP in docs/research/
 
-> use @ruvector-catalog to deeply analyze genomics integration and save the RVBP to docs/research/
-
-The deep analysis itself produces a rich verbal response. Adding "create an RVBP" tells Claude to also write it to a file you can share.
-
-**What is different about this method?**
-
-- Takes 30-60 seconds instead of a few seconds
-- Multiple AI agents work in parallel, each with different expertise
-- Produces richer results: not just "which technologies" but "how to architect the full solution"
-- Includes cross-domain connections you might not think to ask about
-
-**When to use deep analysis vs. quick search:**
-
-| Use quick search when... | Use deep analysis when... |
-|---|---|
-| You want a fast recommendation | You are planning a real project |
-| You are exploring possibilities | You need architecture-level guidance |
-| Your question is focused on one area | Your problem spans multiple domains |
-| You need an answer in seconds | You can wait 30-60 seconds for depth |
-
 ---
 
-## Sample Prompts
+## Migration Examples
 
-Here are prompts you can try right now. Each one explores a different part of the catalog.
+### Before: OpenAI Embeddings ($0.002/query, no learning)
 
-| Prompt | What it explores |
-|---|---|
-| *use @ruvector-catalog to find technologies for detecting errors in AI output* | Coherence and safety systems |
-| *use @ruvector-catalog to recommend technologies for a clinical healthcare solution* | Healthcare vertical (genomics, patient similarity, clinical decision support) |
-| *use @ruvector-catalog to find technologies for searching millions of documents by meaning* | Vector search, HNSW indexing, semantic embeddings |
-| *use @ruvector-catalog to help me build an AI agent that learns from experience* | Self-learning, reinforcement learning, SONA adaptation |
-| *use @ruvector-catalog to find technologies for real-time monitoring of sensor data* | Nervous system (spiking neural networks), streaming, edge compute |
-| *use @ruvector-catalog to recommend technologies for financial trading systems* | Financial domain (tick processing, risk modeling, compliance) |
-| *use @ruvector-catalog to find technologies for running AI models in web browsers* | WASM targets, quantization, constrained runtimes |
-| *use @ruvector-catalog to help me build a knowledge graph of relationships* | Graph intelligence, PageRank, community detection |
-| *use @ruvector-catalog to find technologies for detecting when my AI model starts behaving differently* | Drift detection, behavioral change tracking, coherence gates |
-| *use @ruvector-catalog to create an RVBP for making my search results more relevant* | Full implementation proposal with attention mechanisms, re-ranking, filtered search |
+```javascript
+// OLD: External API call for every embedding
+const response = await fetch('https://api.openai.com/v1/embeddings', {
+  headers: { 'Authorization': `Bearer ${OPENAI_API_KEY}` },
+  body: JSON.stringify({ model: 'text-embedding-3-small', input: text })
+});
+```
+
+### After: RuVector AdaptiveEmbedder (local, free, learns)
+
+```javascript
+// NEW: Local ONNX with self-learning LoRA adapters
+const { AdaptiveEmbedder } = require('ruvector');
+const embedder = new AdaptiveEmbedder({ loraRank: 4, contrastiveLearning: true });
+await embedder.init();
+const embedding = await embedder.embed(text);
+// Embedding improves with every query via learnFromOutcome()
+```
+
+### Before: JSON Index with O(n) Search
+
+```javascript
+// OLD: Load entire index, compare every vector
+const index = JSON.parse(fs.readFileSync('embeddings.json'));
+const results = index.map(e => ({ score: cosine(query, e.vec), ...e }))
+  .sort((a, b) => b.score - a.score).slice(0, 10);
+```
+
+### After: RVF Binary with O(log n) HNSW
+
+```javascript
+// NEW: Binary index, logarithmic search
+const { RvfDatabase } = require('@ruvector/rvf');
+const db = await RvfDatabase.openReadonly('index.rvf');
+const results = await db.query(queryVector, 10); // O(log n)
+```
+
+### Before: No Image Search
+
+```javascript
+// OLD: Images stored but not searchable
+// Best you could do: text descriptions via OCR
+```
+
+### After: CNN Visual Similarity
+
+```javascript
+// NEW: Native image embeddings from submodule
+const cnn = require('./ruvector/crates/ruvector-cnn-wasm/pkg/ruvector_cnn_wasm.js');
+const embedder = new cnn.WasmCnnEmbedder();
+const embedding = embedder.extract(rgbPixels, 224, 224); // 512D
+```
 
 ---
 
 ## Industry Solutions
 
-RuVector Catalog includes pre-built guides for five industries. These map RuVector's engineering capabilities to real-world problems in language that domain experts (not just engineers) can understand.
-
-To explore a vertical, just ask:
-
-> use @ruvector-catalog to explain what capabilities could help with [healthcare / finance / robotics / IoT / genomics]
-
 ### Healthcare
-
-Patient similarity search, drug interaction prediction (pharmacogenomics), clinical decision support, medical image analysis, real-time patient monitoring, HIPAA-compliant data sharing, and federated learning for multi-hospital collaboration.
+Patient similarity, drug interaction prediction (CYP2D6/CYP2C19), clinical decision support, medical image analysis, real-time monitoring, HIPAA-compliant data sharing, federated learning.
 
 ### Finance
-
-Trading signal verification, fraud detection via graph analysis, compliance audit trails, market regime detection, and low-latency processing.
+Trading signal verification, fraud detection via graph analysis, compliance audit trails, market regime detection, low-latency processing.
 
 ### Robotics
-
-Perception pipelines, motion planning, safety-critical decision making, sensor fusion, and real-time control loops with spiking neural networks.
+Perception pipelines, motion planning, safety-critical decisions, sensor fusion, real-time control with spiking neural networks.
 
 ### Edge / IoT
-
-WASM-compiled models for browser and device deployment, quantized inference for constrained hardware, and offline-capable AI as small as 11.8KB.
+WASM-compiled models (as small as 11.8KB), quantized inference for constrained hardware, offline-capable AI.
 
 ### Genomics
-
-Pharmacogenomics (CYP2D6/CYP2C19 drug metabolism), biomarker scoring, genotype analysis, and privacy-preserving on-device genomic analysis.
-
----
-
-## What RuVector Catalog Does NOT Do
-
-It helps to know the boundaries.
-
-- **Not a content generator.** It will not write your blog posts, emails, or marketing copy. It recommends *infrastructure* technologies.
-- **Not an app builder.** It will not create your website or mobile app. It recommends the AI/ML components that would power those apps.
-- **Not a chatbot.** It does not hold general conversations. It answers one specific question: "What technologies should I use for this problem?"
-
-**What it IS:** The expert advisor that sits between your problem and the 200+ technologies that could solve it.
+Pharmacogenomics, biomarker scoring, genotype analysis, privacy-preserving on-device analysis.
 
 ---
 
@@ -229,24 +241,16 @@ It helps to know the boundaries.
 
 | File or Folder | What it contains |
 |---|---|
-| `SKILL.md` | The catalog index -- this is what Claude reads to understand what is available |
+| `SKILL.md` | The architect's playbook -- problem/solution map, migration intelligence, access paths, sunset checklist |
 | `domains/` | Industry-specific guides (healthcare, finance, robotics, edge/IoT, genomics) |
-| `src/` | The search engine and proposal generator source code |
-| `tests/` | 168 tests validating search quality across 5 benchmark queries |
-| `docs/` | Architecture decisions (ADRs) and domain design documents (DDDs) |
-| `ruvector/` | The RuVector monorepo (git submodule, added during setup) |
+| `src/` | Search engine and proposal generator source code |
+| `tests/` | 168 tests validating search quality |
+| `docs/` | Architecture decisions (ADRs) and domain design documents |
+| `ruvector/` | The RuVector monorepo (git submodule, ~1.58M lines Rust) |
 
 ---
 
 ## Keeping It Updated
-
-RuVector is actively developed. To keep your catalog in sync:
-
-In Claude Code:
-
-> update the ruvector submodule and rebuild the catalog
-
-Or copy and paste this block into your terminal (each line runs one step):
 
 ```bash
 git submodule update --remote ruvector    # Pull latest RuVector source
@@ -256,16 +260,20 @@ bun src/cli.ts verify                     # Check for staleness
 
 ---
 
-## Getting Help
+## Changelog
 
-**Questions about using the catalog:**
-Open a discussion on the [RuVector GitHub repository](https://github.com/ruvnet/ruvector).
+### v3.5.0 (2026-03-30)
+- **Migration Intelligence**: 10 aging-pattern detection and replacement guides
+- **Sunset Checklist**: 15-step migration completion verification
+- **Operational Bridge**: 3 access paths (npm, WASM build, NAPI) with decision tree
+- **Verified Inventory**: All counts verified against filesystem (113 crates, 56 npm, 30 WASM)
+- **CNN WASM tested**: MobileNet-V3 image embeddings confirmed working
+- **RVF API documented**: `ingestBatch([{id, vector}])` signature verified
 
-**Found a bug or incorrect recommendation:**
-File an issue at [github.com/mamd69/ruvector-catalog/issues](https://github.com/mamd69/ruvector-catalog/issues). Include the prompt you used and what you expected vs. what you got.
-
-**Want a new industry vertical:**
-Open a feature request issue with the title "Industry Vertical: [Your Industry]" and describe 3-5 use cases you would like mapped.
+### v3.0.0 (2026-03-20)
+- Initial V3 with problem-solution map, algorithms index, industry verticals
+- 168 search quality benchmarks
+- CLI search and RVBP generation
 
 ---
 
@@ -273,6 +281,16 @@ Open a feature request issue with the title "Industry Vertical: [Your Industry]"
 
 | | Role |
 |---|---|
-| [@mamd69](https://github.com/mamd69) | RuVector Catalog — architecture, V3 implementation, benchmarking, documentation |
-| [@stuinfla](https://github.com/stuinfla) | V1 catalog — the original hand-curated SKILL.md and technology inventory that V3 builds upon |
-| [@ruvnet](https://github.com/ruvnet) | [RuVector](https://github.com/ruvnet/ruvector) — the 1.58M-line monorepo of 200+ technologies that the catalog indexes |
+| [@mamd69](https://github.com/mamd69) | RuVector Catalog -- architecture, V3 implementation, benchmarking, documentation |
+| [@stuinfla](https://github.com/stuinfla) | V1 catalog + V3.5 migration intelligence, operational bridge, verified inventory |
+| [@ruvnet](https://github.com/ruvnet) | [RuVector](https://github.com/ruvnet/ruvector) -- the 1.58M-line monorepo that the catalog indexes |
+
+---
+
+## Getting Help
+
+**Questions:** Open a discussion on the [RuVector GitHub repository](https://github.com/ruvnet/ruvector).
+
+**Bugs or incorrect recommendations:** File an issue at [github.com/mamd69/ruvector-catalog/issues](https://github.com/mamd69/ruvector-catalog/issues).
+
+**New industry vertical:** Open a feature request with title "Industry Vertical: [Your Industry]" and 3-5 use cases.
