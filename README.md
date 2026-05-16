@@ -1,6 +1,8 @@
 # RuVector Catalog v3.5.0
 
-**The architect's playbook for RuVector — because a 1.58M-line monorepo is too deep for anyone to search alone.**
+**The architect's playbook for RuVector — because a 1.75M-line monorepo is too deep for anyone to search alone.**
+
+_Last updated: 2026-05-16 — indexed against ruvector `9054c2cc` (2026-05-12)._
 
 ![Catalog Overview](assets/diagrams/catalog-overview.svg)
 
@@ -315,6 +317,11 @@ bun src/cli.ts verify                     # Check for staleness
 ---
 
 ## Changelog
+
+### Re-indexed (2026-05-16)
+- Submodule refresh: ruvector `3bbc8170` → `9054c2cc` (incl. new `ruvector-rairs` IVF crate, ADR-193)
+- Scope counts updated: 135 crates, 4,136 source files, 1.75M Rust lines, 203 ADRs, 71 examples, 59 npm packages
+- Catalog freshness: CURRENT
 
 ### v3.5.0 (2026-03-30)
 - **Migration Intelligence**: 10 aging-pattern detection and replacement guides
