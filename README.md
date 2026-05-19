@@ -300,6 +300,12 @@ const results = await db.query(queryVector, 10);
 
 ## Keeping It Updated
 
+### Automatic daily sync (04:00 ET)
+
+This catalog is automatically re-synced against [upstream `ruvnet/ruvector`](https://github.com/ruvnet/ruvector) by a scheduled job on the maintainer's machine. When upstream advances, the job rebuilds `src/catalog/data.ts` (commit SHA + scope counts), refreshes the catalog store, updates the "Last updated" line at the top of this README, and pushes a commit to `main`. The "Last updated" line therefore always reflects the most recent successful sync.
+
+If you're a consumer of this catalog: just `git pull` periodically — there's nothing to trigger.
+
 ### Update the catalog (do this before each use — takes 3 seconds)
 
 ```bash
