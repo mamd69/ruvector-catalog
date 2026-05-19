@@ -10,12 +10,12 @@ export { VERTICALS } from './data-verticals.js';
 export const CATALOG_VERSION: CatalogVersion = {
   inventoryVersion: '4.0.0',
   ruvectorVersion: 'v3.0.0',
-  ruvectorCommit: '9054c2cc6793ff11175460694a6479be3ac5b0af',
-  ruvectorCommitShort: '9054c2cc',
-  ruvectorCommitDate: '2026-05-12T13:58:08+00:00',
-  generatedAt: '2026-05-16',
+  ruvectorCommit: '53f0419782a472d0a8cc683673667e79f3c350bb',
+  ruvectorCommitShort: '53f04197',
+  ruvectorCommitDate: '2026-05-17T02:44:49+00:00',
+  generatedAt: '2026-05-18',
   scope: {
-    rustLines: 1750254,
+    rustLines: 1750489,
     sourceFiles: 4136,
     crates: 135,
     adrs: 203,
