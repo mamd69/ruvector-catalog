@@ -2,7 +2,7 @@
 
 **The architect's playbook for RuVector — because a 1.75M-line monorepo is too deep for anyone to search alone.**
 
-_Last updated: 2026-05-31 — indexed against ruvector `712e22c1` (2026-05-30)._
+_Last updated: 2026-06-04 — indexed against ruvector `edf6b042` (2026-06-03)._
 
 ![Catalog Overview](assets/diagrams/catalog-overview.svg)
 
