@@ -1,3 +1,17 @@
+> # ⚠️ This project is no longer maintained
+>
+> **RuVector Catalog is archived and will not be updated.** It ran for about six
+> months, last indexing ruvector at commit `6a6c39e6` (2026-07-17), and is kept
+> here for reference.
+>
+> **➡️ For an actively maintained option, see [ruvnet-brain](https://github.com/stuinfla/ruvnet-brain).**
+> It's a source-grounded CLI plugin covering the broader RuvNet stack (ruvector
+> and beyond). It is the recommended next generation of ruvector-catalog.
+>
+> Thanks for the stars and interest. 🙏
+
+---
+
 # RuVector Catalog v3.5.0
 
 **The architect's playbook for RuVector — because a 1.75M-line monorepo is too deep for anyone to search alone.**
